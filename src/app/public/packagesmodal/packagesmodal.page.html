@@ -1,0 +1,178 @@
+<ion-content class="ion-padding">
+
+  <div>
+    <form #form="ngForm" (ngSubmit)="continue_page(form.value)" id="myform">
+
+
+      <ion-slides pager="true" pager="false" #mySlider (ionSlideWillChange)="doCheck()">
+
+        <ion-slide>
+          <div class="login">
+
+            <div class="signup">
+              <p class="bigtxt_list">
+                <span class="" style="margin-bottom: 0;">Choose an item </span>
+                <span class="quest_small close_btn" (click)="closeModal();"><ion-icon name="close"></ion-icon></span>
+              </p>
+            </div>
+    
+            <div>
+              <ion-searchbar [(ngModel)]="searchTerm" (ionChange)="setFilteredItems()" name="searchTerm">
+              </ion-searchbar>
+            </div>
+    
+            <div>
+              <ion-list>
+                <div *ngFor="let entry of packages">
+                  <ion-item (click)="swipeNext(entry)">
+                    <ion-label>{{entry.SERV_NAME}}</ion-label>
+                  </ion-item>
+                </div>
+              </ion-list>
+            </div>
+
+          </div>
+        </ion-slide>
+
+        <ion-slide>
+
+          <div class="login">
+            <ion-row>
+              <ion-col size="2" >
+                <ion-button class="back_btn" color="white" *ngIf="!disablePrevBtn" (click)="swipePrev()">
+                  <ion-icon name="arrow-back"></ion-icon>
+                </ion-button>
+              </ion-col>
+              <ion-col size="8" >
+                <p class="bigtxt_list">
+                  <span class="" style="margin-bottom: 0;">Choose an item </span>
+                </p>
+              </ion-col>
+              <ion-col size="1" >
+                <ion-button class="back_btn" color="white" (click)="closeModal();">
+                  <ion-icon name="close"></ion-icon>
+                </ion-button>
+              </ion-col>
+            </ion-row>
+
+            <ion-row>
+              <ion-col size="12">
+                <div>
+                    <ion-label class="small_title">Number of Items</ion-label>
+                </div>
+              </ion-col>
+
+              <ion-col size="12">
+                <div>
+                  <ion-item>
+                    <ion-input [(ngModel)]="itmquantity" name="itmquantity"></ion-input>
+                  </ion-item>
+                </div>
+              </ion-col>
+
+              <ion-col size="12">
+                <div>
+                    <ion-label class="small_title">Item Size</ion-label>
+                </div>
+              </ion-col>
+
+              <ion-col size="3">
+                <div>
+                  <ion-item>
+                    <ion-input placeholder="hei" [(ngModel)]="itmheight" name="itmheight"></ion-input>
+                  </ion-item>
+                </div>
+              </ion-col>
+
+              <ion-col size="1">
+                    <ion-label>-</ion-label>
+              </ion-col>
+
+              <ion-col size="3">
+                <div>
+                  <ion-item>
+                    <ion-input placeholder="len" [(ngModel)]="itmlength" name="itmlength"></ion-input>
+                  </ion-item>
+                </div>
+              </ion-col>
+
+              <ion-col size="1">
+                <ion-label>-</ion-label>
+              </ion-col>
+
+              <ion-col size="3">
+                <div>
+                  <ion-item>
+                    <ion-input placeholder="bre" [(ngModel)]="itmbreadth" name="itmbreadth"></ion-input>
+                  </ion-item>
+                </div>
+              </ion-col>
+            
+              <ion-col size="12">
+                <div>
+                    <ion-label class="small_title">Item Weight</ion-label>
+                </div>
+              </ion-col>
+
+              <ion-col size="12">
+                <div>
+                  <ion-list>
+                    <ion-radio-group [(ngModel)]="itmqweight" name="itmqweight">
+                  
+                      <ion-item>
+                        <ion-label>0Kg - 100Kg</ion-label>
+                        <ion-radio value="0Kg - 100Kg"></ion-radio>
+                      </ion-item>
+                  
+                      <ion-item>
+                        <ion-label>101Kg - 300Kg</ion-label>
+                        <ion-radio value="101Kg - 300Kg"></ion-radio>
+                      </ion-item>
+                  
+                      <ion-item>
+                        <ion-label>Over 301Kg</ion-label>
+                        <ion-radio value="Over 301Kg"></ion-radio>
+                      </ion-item>
+                
+                    </ion-radio-group>
+                  </ion-list>
+                </div>
+              </ion-col>
+            
+              <ion-col size="12">
+                <div>
+                    <ion-label class="small_title">Notes</ion-label>
+                </div>
+              </ion-col>
+
+              <ion-col size="12">
+                <div>
+                  <ion-item>
+                    <ion-textarea rows="6" cols="20" placeholder="Enter any notes here..." [(ngModel)]="itmnote" name="itmnote"></ion-textarea>
+                  </ion-item>
+                </div>
+              </ion-col>
+            
+            </ion-row> 
+
+            <ion-row>
+              <ion-col size="12" >
+                <button class="next_btn" color="white" (click)="subitem()">
+                  continue 
+                </button>
+              </ion-col>
+            </ion-row>
+
+
+
+          </div>
+
+        </ion-slide>
+
+      </ion-slides>
+    </form>
+  </div>
+
+
+</ion-content>
+

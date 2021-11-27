@@ -1,0 +1,109 @@
+.jobsdone {
+    padding: 16px;
+
+    h4 {
+        font-weight: 400;
+        font-size: 1em;
+        color: var(--ion-color-medium);
+    }
+}
+
+.joblist {
+    #reqtime {
+        margin-top: 4px;
+        font-size: 0.8em;
+    }
+}
+
+.item {
+    border: 1px solid var(--ion-color-light-tint);
+    border-radius: 10px;
+    padding: 7px 0;
+    margin-bottom: 10px;
+    background: white;
+
+    .item-avatar {
+        width: 50px;
+        height: 50px;
+        --border-radius: 10px !important;
+    }
+
+    ion-icon {
+        top: 2px;
+        position: relative;
+        color: var(--ion-color-primary);
+    }
+}
+
+.moreopt {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+/* Style the collapsible content. Note: hidden by default */
+.content {
+    padding: 0 18px 18px 18px;
+    display: none;
+    overflow: hidden;
+    background-color: var(--ion-color-light-tint);
+    margin-bottom: 20px;
+    margin-top: -20px;
+    z-index: -1;
+    border-radius: 0 10px 10px;
+}
+
+
+/* DivTable.com */
+.divTable{
+    margin-top: 10px;
+	display: table;
+    width: 100%;
+    font-size: 0.85em;
+}
+.divTableRow {
+	display: table-row;
+}
+.divTableHeading {
+	display: table-header-group;
+}
+.divTableCell, .divTableHead {
+	display: table-cell;
+    padding: 7px 10px;
+    b{
+        font-weight: 500;
+    }
+}
+.divTableHeading {
+	display: table-header-group;
+	font-weight: bold;
+}
+.divTableFoot {
+	display: table-footer-group;
+	font-weight: bold;
+}
+.divTableBody {
+	display: table-row-group;
+}
+
+.secondary_color_text{
+    color: #000 !important;
+    font-weight: 500;
+}
+
+.next_btn{
+    font-size: 0.7em;
+    float: right;
+    color: #1cb74b;
+}
+
+.finish_btn{
+    border-radius: 6px;
+    font-size: 0.8em;
+    border: 1px solid #1cb74b;
+    color: #1cb74b;
+}
+
+.details_div{
+    margin-top: 1em;
+}

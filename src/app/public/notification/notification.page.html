@@ -1,0 +1,31 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title> <p class="secondary_color">Notifications</p> </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div *ngIf="nodata" class="no-record"><span>No Notification(s)</span></div>
+  <div class="notifications">
+    <div class="notify-list" *ngFor="let item of items" (click)="openDetails(item?.NOTI_CODE)">
+      <ion-item class="collapsible" lines="none">
+          <ion-icon  slot="start" src="assets/icon/notification.svg"></ion-icon>
+        <ion-label>
+          <h2>{{job?.URQ_SERVNAME}}</h2>
+          
+          
+          <small *ngIf="item.NOTI_SENDER != userid"><b>from:</b> {{item?.NOTI_SENDER_NAME}}</small>
+          <small *ngIf="item.NOTI_SENDER == userid"><b>from:</b> Yourself</small>
+
+          <p id="reqtime">
+            <ion-icon slot="start" src="assets/icon/clock.svg"></ion-icon>
+            {{api.formatDate(item?.NOTI_DATE,'d MMM, yyyy | h:mm tt')}}
+          </p>
+        </ion-label>
+      </ion-item>
+      <div class="content" id="content_{{item?.NOTI_CODE}}">
+        <p><b>Message:</b> {{item?.NOTI_MESSAGE}}</p>
+      </div>
+    </div>
+  </div>
+</ion-content>

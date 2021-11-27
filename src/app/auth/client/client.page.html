@@ -1,0 +1,264 @@
+<ion-content class="ion-padding">
+
+  <div>
+    <ion-button class="back_btn" *ngIf="!disableBackBtn" color="white" routerLink='/init/login'>
+      <ion-icon name="arrow-back"></ion-icon> &nbsp; back
+    </ion-button>
+    <ion-button class="back_btn" color="white" *ngIf="!disablePrevBtn" (click)="swipePrev()">
+      <ion-icon name="arrow-back"></ion-icon> &nbsp; Prev
+    </ion-button>
+  </div>
+
+
+
+  <div>
+    <form #form="ngForm" (ngSubmit)="userSignup(form.value)" id="myform">
+
+
+      <ion-slides pager="true" pager="false" #mySlider (ionSlideWillChange)="doCheck()">
+
+        <ion-slide>
+          <div class="login">
+
+            <div class="signup">
+              <p class="bigtxt"><span class="quest_small"> What's your </span> <br> Phone <span
+                  class="primary_color">Number</span>?</p>
+            </div>
+
+            <ion-row>
+              <br><br>
+              <ion-col size="4">
+                <ion-item (click)="openModal()" class="countdiv">
+                  <p class="country">{{country}} <br> <span class="countrycode">( {{countrycode}} )</span> </p>
+                </ion-item>
+              </ion-col>
+              <ion-col size="8" class="field">
+                <ion-item>
+                  <!-- <ion-label position="floating" class="label">Phone Number</ion-label> -->
+                  <ion-input placeholder="+233xxxxxxxxx" [(ngModel)]="phonenumber" name="phonenumber" type="text">
+                  </ion-input>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+
+            <!-- <ion-row>
+                     <br><br>
+                     <ion-col size="12" class="field">
+                         <ion-item>
+                           <ion-label position="floating" class="label">Phone Number</ion-label>
+                           <ion-input placeholder="+233xxxxxxxxx" [(ngModel)]="phonenumber" name = "phonenumber" type="text"></ion-input>
+                         </ion-item>
+                     </ion-col>                
+                   </ion-row> -->
+          </div>
+        </ion-slide>
+
+        <ion-slide>
+          <div class="login">
+            <div class="signup">
+              <p class="bigtxt"><span class="quest_small">Please provide your</span> <br> Personal Details?</p>
+            </div>
+
+            <ion-row>
+              <ion-col size="12" class="field">
+                <p class="bigtxt">
+                  <span class="quest_small"><span class="primary_color"> Fullname</span></span>
+                </p>
+                <ion-item>
+                  <ion-label position="floating" class="label">First Name</ion-label>
+                  <ion-input ngModel name="firstname" type="text"></ion-input>
+                </ion-item>
+                <ion-item>
+                  <ion-label position="floating" class="label">Last Name</ion-label>
+                  <ion-input ngModel name="lastname" type="text"></ion-input>
+                </ion-item>
+              </ion-col>
+              <ion-col size="12" class="field">
+                <p class="bigtxt">
+                  <span class="quest_small"><span class="primary_color"> Gender</span></span>
+                </p>
+                <ion-list>
+                  <ion-radio-group ngModel name="gender">
+                    <ion-item>
+                      <ion-label>Male</ion-label>
+                      <ion-radio slot="start" value="male" id="male" checked></ion-radio>
+                    </ion-item>
+
+                    <ion-item>
+                      <ion-label>Female</ion-label>
+                      <ion-radio slot="start" value="female" id="female"> </ion-radio>
+                    </ion-item>
+
+                  </ion-radio-group>
+                </ion-list>
+              </ion-col>
+            </ion-row>
+
+          </div>
+        </ion-slide>
+
+        <ion-slide>
+
+          <div class="login">
+            <div class="signup">
+              <p class="bigtxt"><span class="quest_small">Please provide your</span> <br> Driving Details?</p>
+            </div>
+
+            <ion-row>
+
+              <ion-col size="12" class="field">
+                <p class="bigtxt">
+                  <span class="quest_small"><span class="primary_color">  License Number</span></span>
+                </p>
+                <ion-item>
+                  <ion-label position="floating" class="label">License Number</ion-label>
+                  <ion-input ngModel name="licensenumber" type="text"></ion-input>
+                </ion-item>
+              </ion-col>
+
+              <ion-col size="12" class="field">
+                <p class="bigtxt">
+                  <span class="quest_small"><span class="primary_color"> License Type</span></span>
+                </p>
+                <ion-radio-group ngModel name="licensetype">
+                  <ion-row>
+                    <ion-col size="6">
+                      <ion-item>
+                        <ion-label>A</ion-label>
+                        <ion-radio slot="start" mode="md" value="A" id="A"></ion-radio>
+                      </ion-item>
+                    </ion-col>
+
+                    <ion-col size="6">
+                      <ion-item>
+                        <ion-label>B</ion-label>
+                        <ion-radio slot="start" mode="md" value="B" id="B"></ion-radio>
+                      </ion-item>
+                    </ion-col>
+
+                    <ion-col size="6">
+                      <ion-item>
+                        <ion-label>C</ion-label>
+                        <ion-radio slot="start" mode="md" value="C" id="C"></ion-radio>
+                      </ion-item>
+                    </ion-col>
+
+                    <ion-col size="6">
+                      <ion-item>
+                        <ion-label>D</ion-label>
+                        <ion-radio slot="start" mode="md" value="D" id="D"></ion-radio>
+                      </ion-item>
+                    </ion-col>
+
+                    <ion-col size="6">
+                      <ion-item>
+                        <ion-label>E</ion-label>
+                        <ion-radio slot="start" mode="md" value="E" id="E"></ion-radio>
+                      </ion-item>
+                    </ion-col>
+
+                    <ion-col size="6">
+                      <ion-item>
+                        <ion-label>F</ion-label>
+                        <ion-radio slot="start" mode="md" value="F" id="F"></ion-radio>
+                      </ion-item>
+                    </ion-col>
+
+                  </ion-row>
+                </ion-radio-group>
+              </ion-col>
+
+            </ion-row>
+          </div>
+        </ion-slide>
+
+        <ion-slide>
+
+          <div class="login">
+            <div class="signup">
+              <p class="bigtxt"><span class="quest_small">Please provide your</span> <br> Car's Details?</p>
+            </div>
+
+            <ion-row>
+
+              <ion-col size="12" class="field">
+                <p class="bigtxt">
+                  <span class="quest_small"><span class="primary_color"> Car Number</span></span>
+                </p>
+                <ion-item>
+                  <ion-label position="floating" class="label">Car Number</ion-label>
+                  <ion-input ngModel name="carnumber" type="text"></ion-input>
+                </ion-item>
+
+                <p class="bigtxt">
+                  <span class="quest_small"><span class="primary_color"> Car Type</span></span>
+                </p>
+
+                <ion-item *ngIf="added_truck_name == ''">
+                  
+                  <ion-list>
+                    <ion-item class="car_item" (click)="add_truck_item('TRK0000000008', 'Pickup Truck', 'pickuptruck.png')">
+                      <img class="btn_img car_icon" src="assets/imgs/pickup.png" alt="logo">
+                      <ion-label>Pick Up </ion-label>
+                      <ion-radio slot="start" value="pickup" id="pickup"></ion-radio>
+                    </ion-item>
+                    <ion-item class="car_item" (click)="add_truck_item('TRK0000000003', 'Trailer Truck', 'containertruck.png')">
+                      <img class="btn_img car_icon" src="assets/imgs/trailer.png" alt="logo">
+                      <ion-label>Trailer</ion-label>
+                      <ion-radio slot="start" value="trailer" id="trailer"> </ion-radio>
+                    </ion-item>
+                    <ion-item class="car_item" (click)="add_truck_item('TRK0000000004', 'Tipper Truck', 'dumper.png')">
+                      <img class="btn_img car_icon" src="assets/imgs/tipper.png" alt="logo">
+                      <ion-label>Tipper Truck </ion-label>
+                      <ion-radio slot="start" value="tipper" id="tipper"></ion-radio>
+                    </ion-item>
+                    <ion-item class="car_item car_item_center" (click)="openTrucksModal()" >
+                      <ion-label>Select from Trucks list</ion-label>
+                    </ion-item>
+                  </ion-list>
+
+                </ion-item>
+
+                <div *ngIf="added_truck_name != '' && added_truck_url != ''">
+                  <ion-item (click)="openTrucksModal()" >
+                    <ion-label class="secondary_color">Truck : {{added_truck_name}}</ion-label>
+                    <img class="btn_img car_icon" src="{{photoCarUrl}}{{added_truck_url}}" alt="logo">
+                  </ion-item>
+                  <span class="change_btn" (click)="openTrucksModal()" >Change Truck</span>
+                </div>
+
+                <div>
+
+                  
+                  <ion-input [(ngModel)]="added_truck_code" name="added_truck_code" type="hidden" ></ion-input>
+                  <ion-input [(ngModel)]="added_truck_name" name="added_truck_name" type="hidden"></ion-input>
+                  <ion-input [(ngModel)]="added_truck_url" name="added_truck_url" type="hidden"></ion-input>
+
+
+                </div>
+                
+                
+              </ion-col>
+            </ion-row>
+          </div>
+        </ion-slide>
+
+      </ion-slides>
+    </form>
+  </div>
+
+
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+
+    <ion-button class="next_btn" color="white" *ngIf="!disableNextBtn" (click)="swipeNext()">
+      Next &nbsp; <ion-icon class="secondary_color" name="arrow-forward"></ion-icon>
+    </ion-button>
+    <ion-button class="next_btn" color="white" *ngIf="!disableSubmitBtn" (click)="subform()">
+      Submit &nbsp; <ion-icon class="secondary_color" name="arrow-forward"></ion-icon>
+    </ion-button>
+
+  </ion-toolbar>
+</ion-footer>

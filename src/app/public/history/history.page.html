@@ -1,0 +1,68 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title> <p class="secondary_color_text"> History </p> </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div *ngIf="nodata" class="no-record"><span>No History Yet</span></div>
+  <div *ngIf="!nodata" class="jobsdone">
+    <h4 class="secondary_color">Trips Requested</h4>
+    <div class="joblist" *ngFor="let item of items">
+      <ion-item class="collapsible" lines="none" (click)="openDetails(item?.URQ_CODE)">
+        <ion-avatar class="item-avatar" slot="start">
+          <img [src]="jobImageUrl + item?.URQ_REQUESTER_PHOTO" id="jobs" (error)="jobs.src='assets/imgs/default.png'"
+            #jobs>
+        </ion-avatar>
+        <span *ngIf="item?.REQ_STATUS =='0'" pending slot="end">
+          <p class="canceled_btn">canceled</p>
+        </span>
+        <span *ngIf="item?.REQ_STATUS =='1'" pending slot="end">
+          <ion-icon src="assets/icon/pending.svg" color="warning"></ion-icon>
+        </span>
+        <span *ngIf="item?.REQ_STATUS =='2'" done slot="end">
+          <ion-icon src="assets/icon/done.svg" color="success"></ion-icon>
+        </span>
+        <ion-label>
+          <h2>{{item?.REQ_SERVNAME}}</h2>
+          <p id="reqtime">
+            <ion-icon slot="start" src="assets/icon/clock.svg"></ion-icon>
+            {{api.formatDate(item?.REQ_DATEADDED,'d MMM, yyyy | h:mm tt')}}
+          </p>
+        </ion-label>
+      </ion-item>
+      <div class="content" id="content_{{item?.URQ_CODE}}">
+        <div class="divTable" style="width: 100%;">
+          <div class="divTableBody">
+            <div class="divTableRow">
+              <div class="divTableCell"><b>From:</b></div>
+              <div class="divTableCell">{{item?.REQ_LOCATION}} <ion-icon slot="end" name="pin" (click)="getLocationMap(item?.REQ_LOCATION_ID)" ></ion-icon></div>
+            </div>
+            <div class="divTableRow">
+              <div class="divTableCell"><b>To:</b></div>
+              <div class="divTableCell">{{item?.REQ_LOCATION_FROM}} <ion-icon slot="end" name="pin" (click)="getLocationMap(item?.REQ_LOCATION_ID_FROM)" ></ion-icon></div>
+            </div>
+            <div class="divTableRow">
+              <div class="divTableCell"><b>Items:</b></div>
+              <div class="divTableCell">{{item?.REQ_TOTAL_ITEMS}}</div>
+            </div>
+            <div class="divTableRow">
+              <div class="divTableCell"><b>Amount:</b></div>
+              <div class="divTableCell">{{item?.REQ_TOTAL_AMOUNT}}</div>
+            </div>
+          </div>
+        </div>
+        <div class="details_div">
+          <ion-button class="next_btn" color="white" *ngIf="!disableNextBtn" (click)="gotoDetails(item)">
+            Details &nbsp; <ion-icon class="secondary_color" name="arrow-forward"></ion-icon>
+          </ion-button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <ion-infinite-scroll threshold="100px" (ionInfinite)="loadMoreData($event)">
+      <ion-infinite-scroll-content loadingSpinner="circles">
+      </ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+</ion-content>

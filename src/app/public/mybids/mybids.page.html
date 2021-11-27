@@ -1,0 +1,71 @@
+  <ion-header>
+    <ion-toolbar>
+      <ion-title> <p class="secondary_color_text"> Accepted Trips </p> </ion-title>
+    </ion-toolbar>
+  </ion-header>
+  
+  <ion-content>
+    <div *ngIf="nodata" class="no-record"><span>No Trip(s) Accepted</span></div>
+    <div *ngIf="!nodata" class="jobsdone">
+      <h4>Trips In-progress</h4>
+      <div class="joblist" *ngFor="let job of jobs">
+        <ion-item class="collapsible" lines="none" (click)="openDetails(job?.URQ_CODE)">
+          <ion-avatar class="item-avatar" slot="start">
+            <img [src]="jobImageUrl + job?.URQ_REQUESTER_PHOTO" id="jobs" (error)="jobs.src='assets/imgs/default.png'"
+              #jobs>
+          </ion-avatar>
+          <span *ngIf="job?.URQ_STATUS =='1'" pending slot="end">
+            <ion-icon src="assets/icon/pending.svg" color="warning"></ion-icon>
+          </span>
+          <span *ngIf="job?.URQ_STATUS =='2'" done slot="end">
+            <ion-icon src="assets/icon/done.svg" color="success"></ion-icon>
+          </span>
+          <ion-label>
+            <h2>{{job?.URQ_SERVNAME}}</h2>
+            <small><b>by:</b> {{job?.REQ_REQUESTER_NAME}}</small>
+            <p id="reqtime">
+              <ion-icon slot="start" src="assets/icon/clock.svg"></ion-icon>
+              {{api.formatDate(job?.URQ_DATE,'d MMM, yyyy | h:mm tt')}}
+            </p>
+          </ion-label>
+        </ion-item>
+        <div class="content" id="content_{{job?.URQ_CODE}}">
+          <div class="divTable" style="width: 100%;">           
+            <div class="divTableBody">
+              <div class="divTableRow">
+                <div class="divTableCell"><b>Job Charge:</b></div>
+                <div class="divTableCell">{{job?.REQ_BUDGET}}</div>
+              </div>
+              <div class="divTableRow">
+                <div class="divTableCell"><b>From:</b></div>
+                <div class="divTableCell">{{job?.REQ_LOCATION}} <ion-icon slot="end" name="pin" (click)="getLocationMap(job?.REQ_LOCATION_ID)" ></ion-icon></div>
+              </div>
+              <div class="divTableRow">
+                <div class="divTableCell"><b>To:</b></div>
+                <div class="divTableCell">{{job?.REQ_LOCATION_FROM}} <ion-icon slot="end" name="pin" (click)="getLocationMap(job?.REQ_LOCATION_ID_FROM)" ></ion-icon></div>
+              </div>
+              <div class="divTableRow">
+                <div class="divTableCell"><b>Items:</b></div>
+                <div class="divTableCell">{{job?.REQ_TOTAL_ITEMS}}</div>
+              </div>
+            </div>
+          </div>
+          <div class="details_div">
+            <ion-button class="finish_btn" color="white" *ngIf="job?.REQ_REQ_STATUS == '2'" (click)="presentAlertConfirm(job)">
+              In-Transit
+            </ion-button>
+            <ion-button class="finish_btn" color="white" *ngIf="job?.REQ_REQ_STATUS == '3'" (click)="presentAlertConfirm(job)">
+              At Destination
+            </ion-button>
+            <ion-button class="finish_btn" color="white" *ngIf="job?.REQ_REQ_STATUS == '4'" (click)="presentAlertConfirm(job)">
+              Finished Trip
+            </ion-button>
+            <ion-button class="next_btn" color="white" *ngIf="!disableNextBtn" (click)="gotoDetails(job)">
+              Details &nbsp; <ion-icon class="secondary_color" name="arrow-forward"></ion-icon>
+            </ion-button>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+  </ion-content>

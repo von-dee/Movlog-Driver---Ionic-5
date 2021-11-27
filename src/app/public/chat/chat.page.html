@@ -1,0 +1,37 @@
+<ion-header>
+  <ion-toolbar>
+      <ion-buttons slot="start">
+          <ion-back-button [text]="buttonText" [icon]="buttonIcon">
+          </ion-back-button>
+      </ion-buttons>
+    <ion-title>Chat</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content chat-bck>
+  <div class="chat-window">
+    <div [ngClass]="msg.chatid==chatid? 'chat-block-right':'chat-block'" *ngFor="let msg of message">
+      <img src="assets/imgs/default.jpg" alt="photo" class="chat-img">
+      <div class="chat-message">{{msg?.chatmsg}} 
+        <small>{{api.timeSince(msg.chattime)}}</small>
+      </div>
+    </div>
+  </div>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <form #chat="ngForm" (ngSubmit)="saveChat(chat.value)" class="wrapp">
+      <div class="textarea">
+          <ion-textarea autoresize class="commentinput" rows="1" slot="start" name="chatmsg" id="chatmsg" [(ngModel)]="chatmsg" (ionFocus)="focus()" (input)="api?.adjustTextarea($event)" placeholder="write comment..."></ion-textarea>
+          <ion-input type="text" [(ngModel)]="chatid" name="chatid" id="chatid" hidden></ion-input>
+          <ion-input type="text" [(ngModel)]="chattime" name="chattime" id="chattime" hidden></ion-input>
+      </div>
+      <div class="sendbutton">
+          <ion-button expand="block" color="success" shape="round" type="submit">
+            <ion-icon slot="icon-only" src="assets/icon/send.svg"></ion-icon>
+          </ion-button>
+      </div>
+    </form>
+  </ion-toolbar>
+</ion-footer> 

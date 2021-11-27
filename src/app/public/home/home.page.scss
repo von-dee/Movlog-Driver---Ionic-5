@@ -1,0 +1,159 @@
+.sideprofile {
+    width: 43px;
+    height: 43px;
+    margin-right: 14px;
+
+    #passfoto {
+        --border-radius: 10px !important;
+    }
+}
+
+.welcome {
+    padding: 16px;
+    height: 20vh;
+
+    h4 {
+        font-weight: 400;
+        font-size: 1.1em;
+    }
+
+    span {
+        font-weight: 200;
+        font-size: 1.4em;
+    }
+}
+.nochats{
+    margin: 0 auto;
+    display: block;
+    font-size: 0.8em;
+    text-align: center;
+    font-weight: 600;
+    color: var(--ion-color-medium);
+}
+.jobsdone {
+    padding: 16px;
+
+    h4 {
+        font-weight: 400;
+        font-size: 1em;
+        color: var(--ion-color-medium);
+    }
+
+    .tabtitle {
+        display: block;
+        height: 40px;
+        margin-bottom: 10px;
+
+        ion-button {
+            float: right;
+            margin-top: -7px;
+        }
+    }
+}
+
+// .joblist {
+//     display: inline-block;
+// }
+
+.moreopt {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.searchbar {
+    margin-top: 20px;
+}
+
+#request {
+    margin-top: -0px;
+    height: 43px;
+    width: 100%;
+    font-size: 0.6em;
+}
+
+.social {
+    padding-left: 16px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--ion-color-silver-tint);
+}
+
+.livechats {
+    width: 45px;
+    height: 45px;
+    margin-right: 14px;
+
+    #passfoto {
+        --border-radius: 10px !important;
+    }
+}
+
+.card-data {
+    h5 {
+        display: block;
+        color: var(--ion-color-primary);
+        font-size: 1.2em;
+
+        span {
+            float: right;
+            font-size: 0.8em;
+            color: var(--ion-color-medium);
+        }
+    }
+}
+.no-record{
+    span{
+        // background: var(--ion-color-light);
+        background: transparent;
+        color: #000;
+        font-size: 1.4em;
+        font-weight: 300;
+    
+    }
+}
+
+.primary_color{
+    color: #1cb74b;
+}
+
+.secondary_color{
+    color: black;
+}
+
+.logo{
+    width: 4em;
+}
+
+.small_green{
+    color: #1cb74b;
+}
+
+.welcome_msg{
+    font-size: 1.8em;
+    margin-top: 0.2em;
+    margin-bottom: 0em;
+    color: black;
+    font-weight: 600;
+}
+
+.home_img{
+    margin-top: 4.5em;
+}
+
+.location_input{
+    border-bottom: 1px solid #000;
+    font-size: 1.4em;
+    float: right !important;
+}
+
+.menu_btn{
+    font-size: 1.1em;
+    color: #000;
+    margin-right: 0.7em;
+}
+
+.card_image{
+    height: 15vh;
+    -o-object-fit: cover;
+    object-fit: cover;
+}

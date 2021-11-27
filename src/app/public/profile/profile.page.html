@@ -1,0 +1,71 @@
+<ion-content fullscreen="true" [scrollEvents]="true" (ionScroll)="onScroll($event)">
+  <div class="profile-img">
+    <img id="img" [src]="photoUrl+finalphoto" alt="photo" (error)="img.src='assets/imgs/truck2.jpg'" #img>
+    <div class="edibtn" shadow (click)="changePhotoOptions()">
+        <ion-icon name="create"></ion-icon>
+    </div>
+  </div>
+  <div class="profile-conent">
+    <div class="personal">
+      <h3>{{fullname}}</h3>
+      <span>+{{phonenumber}}</span>
+    </div>
+    <div infoblock>
+      <form #userform="ngForm" (ngSubmit)="updateProfile(userform.value)" *ngIf="usertype=='1'">
+        <ion-item>
+          <ion-label position="floating">First Name</ion-label>
+          <ion-input [(ngModel)]="firstname" type="text" name="firstname" ></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Last Name</ion-label>
+          <ion-input [(ngModel)]="lastname" type="text" name="lastname"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">E-Mail</ion-label>
+          <ion-input [(ngModel)]="email" type="text" name="email"></ion-input>
+        </ion-item>
+        <ion-button id="updatebtn" color="primary" expand="block" type="submit">Update</ion-button>
+      </form>
+
+      <form #artisanform="ngForm" (ngSubmit)="updateProfile(artisanform.value)" *ngIf="usertype=='2'">
+        <ion-item>
+          <ion-label position="floating">First Name</ion-label>
+          <ion-input [(ngModel)]="firstname" type="text" name="firstname" ></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Last Name</ion-label>
+          <ion-input [(ngModel)]="lastname" type="text" name="lastname"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">E-Mail</ion-label>
+          <ion-input [(ngModel)]="email" type="text" name="email"></ion-input>
+        </ion-item>
+        <ion-button id="updatebtn" color="primary" expand="block" type="submit">Update</ion-button>
+      </form>
+
+      <form #merchantform="ngForm" (ngSubmit)="updateProfile(merchantform.value)" *ngIf="usertype=='3'">
+        <ion-item>
+          <ion-label position="floating">First Name</ion-label>
+          <ion-input [(ngModel)]="firstname" type="text" name="firstname" ></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Last Name</ion-label>
+          <ion-input [(ngModel)]="lastname" type="text" name="lastname"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">E-Mail</ion-label>
+          <ion-input [(ngModel)]="email" type="text" name="email"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Store Name</ion-label>
+          <ion-input [(ngModel)]="storename" type="text" name="storename"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Store Location</ion-label>
+          <ion-input [(ngModel)]="storeloaction" type="text" name="storeloaction"></ion-input>
+        </ion-item>
+        <ion-button id="updatebtn" color="primary" expand="block" type="submit">Update</ion-button>
+      </form>
+    </div>
+  </div>
+</ion-content>

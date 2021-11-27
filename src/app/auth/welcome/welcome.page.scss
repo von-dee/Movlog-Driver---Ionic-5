@@ -1,0 +1,25 @@
+.wraper{
+    width: 320px;
+    margin: 0 auto;
+}
+#loginbtn{
+    height: 50px;
+}
+ion-slide{
+    padding: 40px 20px;
+    display: block;
+    //color: var(--ion-color-light);
+    h1{
+        font-weight: 200; 
+        color: var(--ion-color-primary);
+    }
+}
+#logo{
+    width: 90px;
+    margin: 0 auto;
+    display: block;
+    padding-top: 10vh;
+}
+// ion-content{
+//     --background: var(--ion-color-dark);
+// }

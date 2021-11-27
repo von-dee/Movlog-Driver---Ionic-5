@@ -1,0 +1,219 @@
+<ion-content class="ion-padding">
+
+  <div>
+    <ion-button class="back_btn" *ngIf="!disableBackBtn" color="white" routerLink='/init/login'>
+      <ion-icon name="arrow-back"></ion-icon> &nbsp; back
+    </ion-button>
+    <ion-button class="back_btn" color="white" *ngIf="!disablePrevBtn" (click)="swipePrev()">
+      <ion-icon name="arrow-back"></ion-icon> &nbsp; Prev
+    </ion-button>
+  </div>
+
+
+
+  <div>
+    <form #form="ngForm" (ngSubmit)="userSignup(form.value)" id="myform">
+
+
+      <ion-slides pager="true" pager="false" #mySlider (ionSlideWillChange)="doCheck()">
+        <ion-slide>
+          <div class="login">
+
+            <div class="signup">
+              <p class="bigtxt"><span class="quest_small"> What's your </span> <br> Phone Number?</p>
+            </div>
+
+            <ion-row>
+              <br><br>
+              <ion-col size="4">
+                <ion-item (click)="openModal()" class="countdiv">
+                  <p class="country">{{country}} <br> <span class="countrycode">( {{countrycode}} )</span> </p>
+                </ion-item>
+              </ion-col>
+              <ion-col size="8" class="field">
+                <ion-item>
+                  <!-- <ion-label position="floating" class="label">Phone Number</ion-label> -->
+                  <ion-input placeholder="+233xxxxxxxxx" [(ngModel)]="phonenumber" name="phonenumber" type="text" ></ion-input>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+          </div>
+
+        </ion-slide>
+
+        <ion-slide>
+
+          <div class="login">
+
+            <div class="signup">
+              <p class="bigtxt"><span class="quest_small"> What's is your </span> <br> Fullname?</p>
+            </div>
+
+            <ion-row>
+              <br><br>
+              <ion-col size="12" class="field">
+                <ion-item>
+                  <ion-label position="floating" class="label">First Name</ion-label>
+                  <ion-input ngModel name="firstname" type="text"></ion-input>
+                </ion-item>
+              </ion-col>
+
+              <br><br>
+              <ion-col size="12" class="field">
+                <ion-item>
+                  <ion-label position="floating" class="label">Last Name</ion-label>
+                  <ion-input ngModel name="lastname" type="text"></ion-input>
+                </ion-item>
+              </ion-col>
+
+            </ion-row>
+          </div>
+
+        </ion-slide>
+
+
+        <ion-slide>
+
+          <div class="login">
+
+            <div class="signup">
+              <p class="bigtxt"><span class="quest_small"> What's your </span> <br> Gender?</p>
+            </div>
+
+            <ion-row>
+              <br><br>
+              <ion-col size="12" class="field">
+                <ion-list>
+                  <ion-radio-group ngModel name="gender">
+
+                    <ion-item>
+                      <ion-label>Male</ion-label>
+                      <ion-radio slot="start" value="male" id="male" checked></ion-radio>
+                    </ion-item>
+
+                    <ion-item>
+                      <ion-label>Female</ion-label>
+                      <ion-radio slot="start" value="female" id="female"> </ion-radio>
+                    </ion-item>
+
+                  </ion-radio-group>
+                </ion-list>
+              </ion-col>
+
+            </ion-row>
+          </div>
+
+        </ion-slide>
+
+
+        <ion-slide>
+
+          <div class="login">
+
+            <div class="signup">
+              <p class="bigtxt"><span class="quest_small"> What's is your </span> <br> Location?</p>
+            </div>
+
+            <ion-row>
+              <!-- <br><br>
+              <ion-col size="12" class="field">
+                <ion-item>
+                  <ion-label position="floating" class="label">Location</ion-label>
+                  <ion-input placeholder="" ngModel name="location" type="text"></ion-input>
+                </ion-item>
+              </ion-col> -->
+
+
+              <br><br>
+              <ion-col size="12" class="field">
+                <ion-item>
+                  <ion-label class="mylabel" position="floating">Location <ion-text color="danger">*</ion-text>
+                  </ion-label>
+                  <ion-input type="location" [(ngModel)]="api.autocomplete.input" name="location"
+                    (ionInput)="api.updateSearchResults()" [value]="api.placedname" required></ion-input>
+                  <ion-input type="text" ngModel name="locationid" [value]="api.placeid" hidden></ion-input>
+                </ion-item>
+                <ion-list lines="none" [hidden]="api.autocompleteItems.length == 0" class="list-data">
+                  <ion-item class="lists" no-lines *ngFor="let item of api.autocompleteItems" tappable
+                    (click)="api.selectSearchResult(item)">
+                    {{ item.description }}
+                  </ion-item>
+                </ion-list>
+              </ion-col>
+
+              <!-- 
+                    <ion-col size="6" class="field">
+                      <ion-item>
+                        <ion-label position="floating" class="label">City</ion-label>
+                        <ion-input placeholder="" ngModel name = "city" type="text"></ion-input>
+                      </ion-item>
+                    </ion-col>
+                    <ion-col size="6" class="field">
+                      <ion-item>
+                        <ion-label position="floating" class="label">State | Region</ion-label>
+                        <ion-input placeholder="" ngModel name = "region" type="text"></ion-input>
+                      </ion-item>
+                    </ion-col> 
+                  -->
+
+            </ion-row>
+          </div>
+
+        </ion-slide>
+
+
+        <ion-slide>
+
+          <div class="login">
+
+            <div class="signup">
+              <p class="bigtxt_list"><span class="quest_small" style="margin-bottom: 0;">What do you do? (Tap to select
+                  works) </span></p>
+            </div>
+
+            <div>
+              <ion-searchbar [(ngModel)]="searchTerm" (ionChange)="setFilteredItems()" name="searchTerm">
+              </ion-searchbar>
+            </div>
+
+            <div>
+              <ion-chip class="mychip" color="white" *ngFor="let entry of items">
+                <ion-label>{{entry.SERV_NAME}}</ion-label>
+                <ion-icon name="close" (click)="removework(entry)"></ion-icon>
+              </ion-chip>
+            </div>
+
+            <div>
+              <ion-list>
+                <div *ngFor="let entry of services">
+                  <ion-item (click)="selectwork(entry);">
+                    <ion-label>{{entry.SERV_NAME}}</ion-label>
+                  </ion-item>
+                </div>
+              </ion-list>
+            </div>
+          </div>
+
+        </ion-slide>
+
+
+
+      </ion-slides>
+    </form>
+  </div>
+
+
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+
+    <ion-button class="next_btn" color="white" *ngIf="!disableNextBtn" (click)="swipeNext()">
+      Next &nbsp; <ion-icon name="arrow-forward"></ion-icon>
+    </ion-button>
+    <ion-button class="next_btn" color="white" *ngIf="!disableSubmitBtn" (click)="subform()">
+      Submit &nbsp; <ion-icon name="arrow-forward"></ion-icon>
+    </ion-button>
+
+  </ion-toolbar>
+</ion-footer>

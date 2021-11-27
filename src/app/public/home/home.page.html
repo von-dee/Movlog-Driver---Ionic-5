@@ -1,0 +1,140 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      <img  class="logo" src="assets/imgs/logo_outline.png" alt="logo">
+      <!-- <b>movl<span class="primary_color">o</span>g</b> -->
+    </ion-title>
+    <ion-buttons slot="end">
+      <!-- <ion-button (click)="getsearchbar()">
+        <ion-icon slot="icon-only" id="notify" src="assejobmarketts/icon/search.svg"></ion-icon>
+      </ion-button> -->
+      
+      <ion-button class="menu_btn" (click)="getsetings()" >
+        <ion-icon name="ios-contact"></ion-icon>
+        <!-- <ion-icon slot="icon-only" id="notify" name="more"></ion-icon> -->
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content  class="ion-padding">
+  <!-- <div class="social scrolling-wrapper" *ngIf="livechats">
+    <div class="nochats" *ngIf="!livechats">No Live Chat(s) <ion-icon slot="icon-only" src="assets/icon/chat.svg">
+      </ion-icon>
+    </div>
+    <ion-col size="2" class="card" *ngFor="let chat of livechats">
+      <ion-avatar class="livechats" (click)="chats(chat?.REQ_CODE,chat?.REQ_REQUESTOR_CODE)">
+        <div *ngIf="chat?.REQ_MESSAGE_COUNT!='0'" class="notify"></div>
+        <img shadow id="chatimg" [src]="jobImageUrl + chat?.REQ_PHOTO" (error)="chatimg.src='assets/imgs/default.jpg'"
+          #chatimg>
+      </ion-avatar>
+    </ion-col>
+  </div> -->
+
+
+  <!-- <ion-row>
+    <ion-col size="12">
+      <div>
+        <p class="welcome_msg">Where are you moving your package<br><span class="small_green">from</span>?</p>
+      </div>
+    </ion-col>
+
+    <ion-col size="8" >
+      <ion-input class="location_input" placeholder="East Legon" [(ngModel)]="phonenumber" name="phonenumber" type="text" (click)="gotoServiceRequest()" ></ion-input>
+    </ion-col>
+
+  </ion-row>
+
+  <ion-row>
+
+    <img class="home_img" src="assets/imgs/town.png" alt="logo">
+  </ion-row> -->
+
+
+  <div class="jobsdone">
+    <div class="tabtitle">
+      <ion-button (click)="gotoServiceRequest()">
+        Request Service
+      </ion-button>
+      <span>Requests</span>
+    </div> 
+
+    <div *ngIf="nodata" class="no-record">
+      <span>No Request Yet</span>
+      <img class="home_img" src="assets/imgs/town.png" alt="logo">
+    </div>
+
+    <div class="joblist">
+      <div *ngIf="!nodata" class="card-component ion-no-padding">
+        <ion-grid fixed class="ion-no-padding">
+          <ion-row class="ion-no-padding">
+            <ion-col size="12" size-lg="4" size-xl="4" *ngFor="let job of jobmarket">
+              <ion-card class="ion-no-padding">
+                <div (click)="gotoDetails(job)">
+                  <img class="card-image" id="img" [src]="jobImageUrl+job?.REQ_PHOTO" alt="jobs"
+                    (error)="img.src='assets/imgs/default.png'" #img>
+                  <div class="card-user">
+                    <ion-avatar shadow>
+                      <img [src]="jobImageUrl+job?.REQ_PHOTO" id="photo" (error)="photo.src='assets/imgs/default.png'"
+                        #photo />
+                    </ion-avatar>
+                  </div>
+                  <ion-card-content class="card-data">
+                    <!-- <h5>{{job?.REQ_REQUESTER_NAME}} <span>{{api.timeSince(job?.REQ_DATEADDED)}}</span></h5>
+                    {{job?.REQ_JOB_DESCRIPTION}} -->
+
+                    <div class="content" id="content_{{job?.REQ_CODE}}">
+                      <div class="divTable" style="width: 100%;">
+                        <div class="divTableBody">
+                          <div class="divTableRow">
+                            <div class="divTableCell"><b>Requestor &nbsp;:</b> {{job?.REQ_REQUESTER_NAME}}</div>
+                          </div>
+                          <div class="divTableRow">
+                            <div class="divTableCell"><b>From &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:</b> {{job?.REQ_LOCATION}}</div>
+                          </div>
+                          <div class="divTableRow">
+                            <div class="divTableCell"><b>To &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:</b> {{job?.REQ_LOCATION_FROM}}</div>
+                          </div>
+                          <div class="divTableRow">
+                            <div class="divTableCell"><b>Items &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:</b> {{job?.REQ_TOTAL_ITEMS}}</div>
+                          </div>
+                          <div class="divTableRow">
+                            <div class="divTableCell"><b>Amount &nbsp;&nbsp;&nbsp;&nbsp; :</b> GHC {{job?.REQ_TOTAL_AMOUNT}}</div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                  </ion-card-content>
+                </div>
+                <ion-grid fixed>
+                  <ion-row class="card-options">
+                    <ion-col size="4"><button (click)="share()">
+                      <ion-icon slot="icon-only" src="assets/icon/share.svg"></ion-icon>
+                    </button></ion-col>
+                    
+                    <ion-col size="4"><button (click)="comments(job?.REQ_CODE)">
+                        <ion-icon slot="icon-only" src="assets/icon/chat.svg"></ion-icon>
+                        <span>{{api.filterAccepts(job?.REQ_COMMENT_COUNT)}}</span>
+                      </button></ion-col>
+                    
+                    <ion-col size="4" *ngIf="usertype!='1'"><button
+                        (click)="acceptJob(job?.REQ_CODE, job?.REQ_SERVCODE, job?.REQ_REQUESTOR_CODE)">
+                        <ion-icon slot="icon-only" src="assets/icon/tick.svg"></ion-icon>
+                        <span>{{api.filterAccepts(job?.REQ_ACCEPT_COUNT)}}</span>
+                      </button></ion-col>
+                    <ion-col size="4" *ngIf="usertype=='1'"><button>
+                        <ion-icon slot="icon-only" src="assets/icon/heart.svg"></ion-icon>
+                        <span>{{api.filterAccepts(job?.REQ_ACCEPT_COUNT)}}</span>
+                      </button></ion-col>
+                  </ion-row>
+                </ion-grid>
+              </ion-card>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </div>
+    </div>
+
+  </div>
+</ion-content>

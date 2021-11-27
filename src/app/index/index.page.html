@@ -1,0 +1,26 @@
+<ion-tabs>
+
+  <ion-tab-bar slot="bottom">
+    <ion-tab-button tab="home">
+      <ion-icon src="assets/icon/home.svg"></ion-icon>
+    </ion-tab-button>
+
+    <ion-tab-button *ngIf="usertype!=1" tab="mybids">
+      <ion-icon src="assets/icon/request.svg"></ion-icon> 
+    </ion-tab-button>
+
+    <ion-tab-button tab="notification">
+      <div shadow class="bubbles"></div>
+      <ion-icon src="assets/icon/notification.svg"></ion-icon>
+    </ion-tab-button>
+
+    <ion-tab-button tab="history">
+      <ion-icon src="assets/icon/clock.svg"></ion-icon>
+    </ion-tab-button>
+
+    <!-- <ion-tab-button tab="profile">
+      <ion-icon src="assets/icon/user.svg"></ion-icon>
+    </ion-tab-button> -->
+  </ion-tab-bar>
+
+</ion-tabs>

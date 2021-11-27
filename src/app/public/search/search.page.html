@@ -1,0 +1,39 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-searchbar showCancelButton="never" round10 class="ion-no-padding" [(ngModel)]="searchparam" (ionInput)="findRequest()"></ion-searchbar>
+    <ion-buttons slot="end">
+      <ion-button (click)="closepage()">
+        <ion-icon slot="icon-only" name="close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+    <div class="card-component ion-no-padding">
+        <ion-card class="ion-no-padding" *ngFor="let job of jobmarket">
+          <div (click)="gotoDetails(job)">
+            <img class="card-image" id="img" [src]="jobImageUrl+job?.REQ_PHOTO" alt="jobs" (error)="img.src='assets/imgs/default.jpg'" #img>
+            <div class="card-user">
+              <ion-avatar shadow>
+                <img [src]="jobImageUrl+job?.REQ_PHOTO" id="photo" (error)="photo.src='assets/imgs/default.jpg'" #photo/>
+              </ion-avatar>
+            </div>
+            <ion-card-content class="card-data">
+              <h5>{{job?.REQ_SERVNAME}} <span>{{api.timeSince(job?.REQ_DATEADDED)}}</span></h5>
+              {{job?.REQ_JOB_DESCRIPTION}}
+            </ion-card-content>
+          </div>
+          <ion-grid fixed>
+            <ion-row class="card-options">
+              <ion-col size="4" *ngIf="usertype!='1'"><button (click)="acceptJob(job?.REQ_CODE, job?.REQ_SERVCODE, job?.REQ_REQUESTOR_CODE)"><ion-icon slot="icon-only" src="assets/icon/tick.svg"></ion-icon><span>{{api.filterAccepts(job?.REQ_ACCEPT_COUNT)}}</span></button></ion-col>
+              <ion-col size="4" *ngIf="usertype=='1'"><button><ion-icon slot="icon-only" src="assets/icon/heart.svg"></ion-icon><span>{{api.filterAccepts(job?.REQ_ACCEPT_COUNT)}}</span></button></ion-col>
+              <ion-col size="4"><button (click)="comments(job?.REQ_CODE)"><ion-icon slot="icon-only" src="assets/icon/chat.svg"></ion-icon><span>{{api.filterAccepts(job?.REQ_COMMENT_COUNT)}}</span></button></ion-col>
+              <ion-col size="4"><button (click)="share()"><ion-icon slot="icon-only" src="assets/icon/share.svg"></ion-icon></button></ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-card>
+      </div>
+      
+</ion-content>

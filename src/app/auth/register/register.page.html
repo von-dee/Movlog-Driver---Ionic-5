@@ -1,0 +1,28 @@
+<ion-header>
+  <ion-toolbar>
+      <ion-buttons slot="start">
+          <ion-back-button [text]="buttonText" [icon]="buttonIcon">
+          </ion-back-button>
+        </ion-buttons>
+    <ion-title>Ejuma Hub : <b>Register</b></ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+    <div class="register">
+      <form #form="ngForm" (ngSubmit)="registerUser(form.value)">
+        <input ngModel class="form-controller" type="text" name="firstname" id="firstname" placeholder="First Name" required>
+        <input ngModel class="form-controller" type="text" name="othernames" id="othernames" placeholder="Last Name" required>
+        <input ngModel class="form-controller" type="number" name="phonenumber" id="phonenumber" placeholder="Phone number" required>
+        <input ngModel class="form-controller" type="email" name="usname" id="usname" placeholder="E-mail" required>
+        <input ngModel class="form-controller" type="password" name="pwd" id="pwd" placeholder="Password" required>
+        <input ngModel class="form-controller" type="password" name="pwd2" id="pwd2" placeholder="Renter password"
+          (keyup.enter)="registerUser(form.value)" required>
+    
+        <ion-button shape="round" expand='block' id="registerbutton" color="primary" type="submit" [disabled]="form.invalid">Signup</ion-button>
+      </form>
+      <div class="signup" (click)="termConditions()">by clicking signup you agree to our <b>Terms and Conditions.</b></div>
+    </div>
+  
+  </ion-content>

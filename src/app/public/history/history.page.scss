@@ -1,0 +1,102 @@
+.jobsdone{
+    padding: 16px;
+    h4{
+        font-weight: 400;
+        font-size: 1em;
+        color: var(--ion-color-medium);
+    }
+}
+.item{
+    border: 1px solid var(--ion-color-light-tint);
+    border-radius: 10px;
+    padding: 7px 0;
+    margin-bottom: 10px;
+    z-index: 1;
+    .item-avatar{
+        width: 50px;
+        height: 50px;
+        --border-radius: 10px !important; 
+    }
+    ion-icon{
+        color: var(--ion-color-primary);
+    }
+}
+.moreopt{
+    width: 100%;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+/* Style the collapsible content. Note: hidden by default */
+.content {
+    padding: 0 18px 18px 18px;
+    display: none;
+    overflow: hidden;
+    background-color: var(--ion-color-light-tint);
+    margin-bottom: 20px;
+    margin-top: -20px;
+    z-index: -1;
+    border-radius: 0 10px 10px;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+
+/* DivTable.com */
+.divTable{
+    margin-top: 10px;
+	display: table;
+    width: 100%;
+    font-size: 0.85em;
+}
+.divTableRow {
+	display: table-row;
+}
+.divTableHeading {
+	display: table-header-group;
+}
+.divTableCell, .divTableHead {
+	display: table-cell;
+    padding: 7px 10px;
+    b{
+        font-weight: 500;
+    }
+}
+.divTableHeading {
+	display: table-header-group;
+	font-weight: bold;
+}
+.divTableFoot {
+	display: table-footer-group;
+	font-weight: bold;
+}
+.divTableBody {
+	display: table-row-group;
+}
+
+
+.secondary_color_text{
+    color: #000 !important;
+    font-weight: 500;
+}
+
+.secondary_color{
+    color: #000 !important;
+}
+
+.next_btn{
+    font-size: 0.7em;
+    float: right;
+    color: #1cb74b;
+}
+
+.canceled_btn{
+    font-size: 0.65em;
+    color: #ff1d1d;
+    font-weight: 500;
+    border: 1px solid #ff1d1d;
+    border-radius: 5px;
+    padding: 0.2em;
+    width: 5em;
+    text-align: center;
+}

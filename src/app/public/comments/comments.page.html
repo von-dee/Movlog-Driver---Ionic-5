@@ -1,0 +1,41 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button [text]="buttonText" [icon]="buttonIcon">
+      </ion-back-button>
+    </ion-buttons>
+    <ion-title>Comments</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="chat-window">
+    <div *ngIf="nodata" class="no-record"><span>Be the first to comment</span></div>
+    <div [ngClass]="msg?.COMM_SENDER_CODE == userid ? 'chat-block-right':'chat-block'" *ngFor="let msg of message">
+      <img src="assets/imgs/default.jpg" alt="photo" class="chat-img">
+      <div class="chat-message">
+        <small>{{msg?.COMM_SENDER_NAME}}</small>
+        <p>{{msg?.COMM_MESSAGE}}</p>
+        <small>{{api.timeSince(msg.COMM_DATE_ADDED)}}</small>
+      </div>
+    </div>
+    <div *ngIf="istyping" class="typing-indicator"><span></span><span></span><span></span></div>
+  </div>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <form #chat="ngForm" (ngSubmit)="saveComments(chat.value)" class="footer-wrapp">
+      <div class="textarea">
+        <ion-textarea autoresize class="commentinput" rows="1" slot="start" name="comments" id="comments"
+          [(ngModel)]="comments" (ionFocus)="focus()" (input)="api?.adjustTextarea($event)" (keyup)="typing()"
+          placeholder="write comment..."></ion-textarea>
+      </div>
+      <div class="sendbutton">
+        <ion-button expand="block" color="success" shape="round" type="submit">
+          <ion-icon slot="icon-only" src="assets/icon/send.svg"></ion-icon>
+        </ion-button>
+      </div>
+    </form>
+  </ion-toolbar>
+</ion-footer>

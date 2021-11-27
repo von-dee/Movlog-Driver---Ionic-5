@@ -1,0 +1,54 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Response</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen="true">
+  <div class="profile-img">
+      <img id="img" shadow [src]="photoUrl+routeData?.URQ_PHOTO" alt="photo" (error)="img.src='assets/imgs/default.jpg'" #img>
+  </div>
+  <div class="profile-conent">
+    <div class="personal">
+      <h3>{{routeData?.URQ_NAME}}</h3>
+    </div>
+    <ion-grid infoblock>
+      <table id="service-info">
+        <tr>
+          <th>Contact: </th>
+          <td>+233{{routeData.URQ_STATUS=='2' ? artisan?.USR_PHONE : '**********'}}</td>
+        </tr>
+        <tr>
+          <th>Email: </th>
+          <td>{{routeData.URQ_STATUS=='2' ? (artisan?.USR_EMAIL ? artisan?.USR_EMAIL: 'N/A' ): '**********'}}</td>
+          <!-- <td>{{artisan?.USR_STATUS=='1' ? 'Active' : 'Not Active'}}</td> -->
+        </tr>
+      </table>
+    </ion-grid>
+    <div class="costing">
+      <div class="divTable" style="width: 100%;">
+        <div class="divTableBody">
+          <div class="divTableRow">
+            <div class="divTableCell"><b>Job Charge:</b></div>
+            <div class="divTableCell">{{routeData?.URQ_BUDGET}}</div>
+          </div>
+          <div class="divTableRow">
+            <div class="divTableCell"><b>Requirements:</b></div>
+            <div class="divTableCell">{{routeData?.URQ_DESCRIPTION}}</div>
+          </div>
+          <div class="divTableRow">
+            <div class="divTableCell"><b>Date:</b></div>
+            <div class="divTableCell">{{api.formatDate(routeData?.URQ_DATE,'d MMM yyyy')}}</div>
+          </div>
+        </div>
+      </div>
+      <ion-button *ngIf="routeData?.URQ_STATUS=='1'" id="acceptbtn" shape="round" color="primary" expand="block" (click)="acceptDeal(routeData?.URQ_REQUEST_CODE)">Accept Deal</ion-button>
+      <ion-button *ngIf="routeData?.URQ_STATUS=='2'" id="acceptbtn" shape="" color="success" expand="block" (click)="gotoChat(routeData?.URQ_REQUEST_CODE, routeData?.URQ_REQUESTOR_CODE)">Chat Now</ion-button>
+      
+    </div>
+    
+  </div>
+</ion-content>

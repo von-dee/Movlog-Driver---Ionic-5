@@ -1,0 +1,87 @@
+.profile-img{
+    text-align: center;
+}
+
+.profile-img img{
+    top: 0;
+    width: 15em;
+    object-fit: cover;
+}
+ion-fab{
+    margin-left: 5%;
+}
+
+/* Transparent standard */
+ion-toolbar {
+    --background: transparent;
+    --ion-color-base: transparent !important;
+}
+
+/* Show background if class is active */
+.show-background {
+    border-style: none;
+    background: var(--ion-color-primary);
+}
+
+/* Remove bottom border on md */
+.header-md::after {
+    background-image: none;
+}
+
+/* Remove bottom border on ios */
+.header-ios ion-toolbar:last-child {
+    --border-width: 0;
+}
+
+.profile-conent{
+    .personal{
+        display: block;
+        text-align: center;
+        h3{
+            font-weight: 300;
+            font-size: 1.3em;
+        }
+        span{
+            font-size: 0.8em;
+            margin-top: -10px;
+            display: block;
+            color: #888;
+        }
+    }
+}
+
+*[infoblock]{
+    margin-top: 30px;
+    padding: 20px;
+    border-top: 1px solid var(--ion-color-silver-tint);
+    border-bottom: 1px solid var(--ion-color-silver-tint);
+}
+
+*[comment]{
+    text-align: center;
+    span{
+        display: block;
+        font-size: 1.5em;
+    }
+    small{
+        display: block;
+        color: var(--ion-color-medium);
+    }
+}
+.edibtn{
+    width: 50px;
+    height: 50px;
+    padding: 13px;
+    border-radius: 50%;
+    color: white;
+    font-size: 1.5em;
+    margin-left: 5%;
+    margin-top: -10%;
+    position: absolute;
+    z-index: 9999;
+    background: var(--ion-color-primary);
+}
+#updatebtn{
+    height: 45px;
+    margin-top: 20px;
+}

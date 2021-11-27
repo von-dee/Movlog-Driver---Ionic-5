@@ -1,0 +1,246 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button class="back_btn" color="white" routerLink='{{route_url}}'>
+        <ion-icon name="arrow-back"></ion-icon> &nbsp; back
+      </ion-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button slot="end" color="danger" *ngIf="showCancel"
+        (click)="cancelRequest(item?.REQ_REQUESTOR_CODE,item?.REQ_CODE)">
+        <!-- <ion-icon name="trash"></ion-icon>  -->
+        Cancel Request
+      </ion-button>
+      <ion-button class="accept_btn" slot="end" color="success" *ngIf="!showCancel && route_url == '/index/home'"
+        (click)="acceptJob(item)">
+        <ion-icon name="paper-plane"></ion-icon>
+        <span>Accept Request</span>
+      </ion-button>
+      <ion-button class="accept_btn" slot="end" color="success" *ngIf="!showCancel && route_url == '/index/mybids' "
+      (click)="presentFinishAlertConfirm()">
+        <ion-icon name="paper-plane"></ion-icon>
+        <span>Finished Trip</span>
+      </ion-button>
+      
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding page">
+
+  <div class="login">
+
+    
+    <div class="signup">
+      <p class="bigtxt"><span class="quest_small"> Client's <span class="primary_color">Details</span>. </span></p>
+      <p class="bigtxt_subtext"><span class="quest_small">These are the details of the client.</span></p>
+    </div>
+
+    <ion-row>
+      <br><br>
+      <ion-col size="12" class="">
+        <ion-item>
+          <ion-label class="secondary_color">Client's Name : <span class="tertiary_color quest_small"> {{clientdetails?.USR_FIRSTNAME}} &nbsp; {{clientdetails?.USR_LASTNAME}} </span></ion-label>
+        </ion-item>
+      </ion-col>
+      <ion-col size="12" class="">
+        <ion-item>
+          <ion-label class="secondary_color">Client's Phone : <span class="tertiary_color quest_small"> {{clientdetails?.USR_PHONE}} </span></ion-label>
+        </ion-item>
+      </ion-col>
+      <ion-col size="12" class="">
+        <ion-item>
+          <ion-label class="secondary_color">Gender : <span class="tertiary_color quest_small"> {{clientdetails?.USR_GENDER}} </span></ion-label>
+        </ion-item>
+      </ion-col>
+
+      <br><br>
+      <br><br>
+    </ion-row>
+
+
+    <div class="signup">
+      <p class="bigtxt"><span class="quest_small"> Requst <span class="primary_color">Details</span>. </span></p>
+      <p class="bigtxt_subtext"><span class="quest_small">Please go through your details before you take any
+          action</span></p>
+    </div>
+    <ion-row>
+      <ion-col size="12" class="">
+        <div>
+          <p class="bigtxt total_text">
+            <span class="quest_small"> Total <span class="primary_color"> GHC {{item?.REQ_TOTAL_AMOUNT}}</span></span>
+          </p>
+        </div>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <p class="bigtxt total_text"><span class="quest_small"> Locations <span class="primary_color"></span></span></p>
+      <br><br>
+      <ion-col size="12" class="">
+        <ion-item>
+          <ion-label class="secondary_color">From : <span class="tertiary_color quest_small">
+              {{item?.REQ_LOCATION_FROM}} </span></ion-label>
+        </ion-item>
+      </ion-col>
+      <ion-col size="12" class="">
+        <ion-item>
+          <ion-label class="secondary_color">To : <span class="tertiary_color quest_small"> {{item?.REQ_LOCATION}}
+            </span></ion-label>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <p class="bigtxt total_text margin_top"><span class="quest_small"> Other Information <span
+            class="primary_color"></span></span></p>
+      <br><br>
+      <ion-col size="12" class="">
+        <ion-item>
+          <ion-label class="secondary_color">Pickup Date : <span
+              class="tertiary_color quest_small">{{item?.REQ_PICKUP_DATE}}</span></ion-label>
+        </ion-item>
+      </ion-col>
+      <ion-col size="12" class="">
+        <ion-item>
+          <ion-label class="secondary_color">Pickup Time : <span
+              class="tertiary_color quest_small">{{item?.REQ_PICKUP_TIME}}</span></ion-label>
+        </ion-item>
+      </ion-col>
+      <ion-col size="12" class="">
+        <ion-item>
+          <ion-label class="secondary_color">Truck Type : <span
+              class="tertiary_color quest_small">{{item?.URQ_TRUCKTYPENAME}}</span></ion-label>
+        </ion-item>
+      </ion-col>
+      <ion-col size="12" class="">
+        <ion-item>
+          <ion-label class="secondary_color">Description : <span
+              class="tertiary_color quest_small">{{item?.REQ_DESCRIPTION}}</span></ion-label>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <p class="bigtxt total_text margin_top"><span class="quest_small"> Items you are moving <span
+            class="primary_color"></span></span></p>
+      <br><br>
+      <ion-col size="12" class="">
+        <ion-item *ngFor="let entry of selecteditems; let i = index">
+          <ion-row>
+            <ion-col size="1">
+              <ion-label class="float_left secondary_color">{{i+1}}</ion-label>
+            </ion-col>
+            <ion-col size="1">
+              <ion-label class="float_left secondary_color"> Item &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; :
+                <span>{{entry.serv_name}}</span> </ion-label>
+              <ion-label class="float_left secondary_color"> Quantity : <span>{{entry.serv_quantity}}</span> </ion-label>
+              <ion-label class="float_left secondary_color"> Size &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; :
+                <span>hei-{{entry.serv_height}}</span>; <span>len-{{entry.serv_length}}</span>; <span>bre-{{entry.serv_breadth}}</span>
+              </ion-label>
+              <ion-label class="float_left secondary_color"> Weight &nbsp;&nbsp; : <span>{{entry.serv_weight}}</span>
+              </ion-label>
+              <ion-label class="float_left secondary_color"> Description : <span>{{entry.serv_note}}</span>
+              </ion-label>
+            </ion-col>
+          </ion-row>
+        </ion-item>
+
+      </ion-col>
+    </ion-row>
+
+
+
+  </div>
+
+
+  <!-- <div class="wraper">
+    <div class="request-content">
+      <div class="card-component ion-no-padding">
+        <ion-card class="ion-no-padding">
+          <img class="card-image" [src]="jobImageUrl+item?.REQ_PHOTO" alt="jobs" id="img"
+            (error)="img.src='assets/imgs/default.jpg'" #img>
+          <div class="card-user">
+            <ion-avatar shadow>
+              <img [src]="jobImageUrl+item?.REQ_PHOTO" id="photo" (error)="photo.src='assets/imgs/default.jpg'"
+                #photo />
+            </ion-avatar>
+          </div>
+          <ion-card-content class="service-block">
+            <table id="service-info">
+              <tr>
+                <th>Service:</th>
+                <td> {{item?.REQ_SERVNAME}}</td>
+              </tr>
+              <tr>
+                <th>Location:</th>
+                <td> {{item?.REQ_LOCATION}} <ion-icon slot="end" name="pin" (click)="getLocationMap(item?.REQ_LOCATION_ID)" ></ion-icon></td>
+              </tr>
+              <tr>
+                <th>Budget Range:</th>
+                <td> {{item?.REQ_BUDGET_RANGE}}</td>
+              </tr>
+              <tr>
+                <th>Date Posted:</th>
+                <td [innerHtml]="api.timeSince(item?.REQ_DATEADDED)"></td>
+              </tr>
+            </table>
+
+            <div class="description">
+              <b>Description</b>
+              {{item?.REQ_JOB_DESCRIPTION}}
+            </div>
+          </ion-card-content>
+          <ion-grid fixed>
+            <ion-row class="card-options">
+              <ion-col size="4" *ngIf="usertype!='1'"><button (click)="acceptJob(item?.REQ_CODE, item?.REQ_SERVCODE, item?.REQ_REQUESTOR_CODE)">
+                  <ion-icon slot="icon-only" src="assets/icon/tick.svg"></ion-icon>
+                  <span>{{api.filterAccepts(item?.REQ_ACCEPT_COUNT)}}</span>
+                </button></ion-col>
+              <ion-col size="4" *ngIf="usertype=='1'"><button>
+                  <ion-icon slot="icon-only" src="assets/icon/heart.svg"></ion-icon>
+                  <span>{{api.filterAccepts(item?.REQ_ACCEPT_COUNT)}}</span>
+                </button></ion-col>
+              <ion-col size="4"><button (click)="comments(item?.REQ_CODE)">
+                  <ion-icon slot="icon-only" src="assets/icon/chat.svg"></ion-icon><span>{{api.filterAccepts(item?.REQ_COMMENT_COUNT)}}</span>
+                </button></ion-col>
+              <ion-col size="4"><button (click)="share()">
+                  <ion-icon slot="icon-only" src="assets/icon/share.svg"></ion-icon>
+                </button></ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-card>
+        <div *ngIf="usertype=='1'">
+          <ion-item lines="none" *ngFor="let request of requests" (click)="gotoProformer(request,item?.REQ_REQUESTOR_CODE)">
+            <ion-avatar class="item-avatar" slot="start">
+              <img src="assets/imgs/avatar.png" id="jobs">
+            </ion-avatar>
+            <span *ngIf="request?.URQ_STATUS=='2'" class="successprice" pending slot="end">{{request?.URQ_BUDGET}}</span>
+            <span *ngIf="request?.URQ_STATUS=='1'" class="pendingprice" pending slot="end">{{request?.URQ_BUDGET}}</span>
+            <ion-label>
+              <h2>{{request?.URQ_NAME}}</h2>
+              <p>
+                <ion-icon slot="start" src="assets/icon/clipboard-list.svg"></ion-icon> {{api.formatDate(request?.URQ_DATE,'d MMM yyyy')}}  <ion-icon slot="start" src="assets/icon/clock.svg"></ion-icon><span> {{api.formatDate(request?.URQ_DATE,'h:mm tt')}}</span>
+              </p>
+            </ion-label>
+          </ion-item>
+        </div>
+        <div *ngIf="usertype!='1'">
+          <ion-item lines="none" *ngFor="let request of requests">
+            <ion-avatar class="item-avatar" slot="start">
+              <img src="assets/imgs/avatar.png" id="jobs">
+            </ion-avatar>
+            <span *ngIf="request?.URQ_STATUS=='2'" class="successprice" pending slot="end">{{request?.URQ_BUDGET}}</span>
+            <span *ngIf="request?.URQ_STATUS=='1'" class="pendingprice" pending slot="end">{{request?.URQ_BUDGET}}</span>
+            <ion-label>
+              <h2>{{request?.URQ_NAME}}</h2>
+              <p>
+                <ion-icon slot="start" src="assets/icon/clipboard-list.svg"></ion-icon> {{api.formatDate(request?.URQ_DATE,'d MMM yyyy')}}  <ion-icon slot="start" src="assets/icon/clock.svg"></ion-icon><span> {{api.formatDate(request?.URQ_DATE,'h:mm tt')}}</span>
+              </p>
+            </ion-label>
+          </ion-item>
+        </div>
+      </div>
+    </div>
+  </div> -->
+</ion-content>

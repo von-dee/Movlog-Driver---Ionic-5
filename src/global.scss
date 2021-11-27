@@ -1,0 +1,273 @@
+/*
+ * App Global CSS
+ * ----------------------------------------------------------------------------
+ * Put style rules here that you want to apply globally. These styles are for
+ * the entire app and not just one component. Additionally, this file can be
+ * used as an entry point to import other CSS/Sass files to be included in the
+ * output CSS.
+ * For more information on global stylesheets, visit the documentation:
+ * https://ionicframework.com/docs/layout/global-stylesheets
+ */
+
+/* Core CSS required for Ionic components to work properly */
+@import "~@ionic/angular/css/core.css";
+
+/* Basic CSS for apps built with Ionic */
+@import "~@ionic/angular/css/normalize.css";
+@import "~@ionic/angular/css/structure.css";
+@import "~@ionic/angular/css/typography.css";
+@import '~@ionic/angular/css/display.css';
+
+/* Optional CSS utils that can be commented out */
+@import "~@ionic/angular/css/padding.css";
+@import "~@ionic/angular/css/float-elements.css";
+@import "~@ionic/angular/css/text-alignment.css";
+@import "~@ionic/angular/css/text-transformation.css";
+@import "~@ionic/angular/css/flex-utils.css";
+
+
+.header-md::after,
+.header-ios::after,
+.tabs-md[tabsPlacement="top"]>.tabbar::after,
+.footer-md::before,
+.footer-ios::before,
+.tabs-md[tabsPlacement="bottom"]>.tabbar::before {
+    bottom: 0px;
+    height: 0px;
+    background-image: none;
+}
+
+ion-title {
+    font-weight: 200 !important;
+
+    b {
+        color: var(--ion-color-primary);
+    }
+}
+
+.tabbar a[aria-selected=true] {
+    border-top: 1px;
+    border-style: solid;
+}
+
+*[btn-default] {
+    height: 50px;
+}
+
+.ion-color-silver {
+    --ion-color-base: var(--ion-color-silver);
+    --ion-color-base-rgb: var(--ion-color-silver-rgb);
+    --ion-color-contrast: var(--ion-color-silver-contrast);
+    --ion-color-contrast-rgb: var(--ion-color-silver-contrast-rgb);
+    --ion-color-shade: var(--ion-color-silver-shade);
+    --ion-color-tint: var(--ion-color-silver-tint);
+}
+
+*[round10] {
+    --border-radius: 10px !important;
+}
+
+*[round20] {
+    --border-radius: 20px !important;
+}
+
+*[done] {
+    font-size: 1.2em;
+    font-weight: 600;
+}
+
+*[pending] {
+    font-size: 1.2em;
+    font-weight: 600;
+}
+
+*[spin] {
+    animation-name: spin;
+    animation-duration: 2000ms;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+
+    @keyframes spin {
+        from {
+            transform: rotate(0deg);
+        }
+
+        to {
+            transform: rotate(360deg);
+        }
+    }
+}
+
+.searchbar-input {
+    box-shadow: none !important;
+    border: 1px solid var(--ion-color-silver-tint) !important;
+    border-radius: 10px !important;
+}
+
+*[shadow] {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+*[submit-btn] {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    height: 45px;
+}
+.card-component{
+    margin: 0 auto;
+    display: block;
+    .card-image{
+        height: 15vh;
+        object-fit: cover;
+    }
+    .card-user{
+        position: absolute;
+        margin-top: -30px;
+        left: 10px;
+        ion-avatar{
+            width: 40px;
+            height: 40px;
+            background: white;
+        }
+    }    
+    .card-options{
+        text-align: center;
+        border-top: 1px solid var(--ion-color-silver-tint);
+        button{
+            font-size: 1.4em;
+            padding: 5px 20px;
+            background: transparent !important;
+            color: var(--ion-color-dark);
+            ion-icon{
+                top: 5px;
+                left: 5px;
+                padding-right: 7px;
+                position: relative;
+            }
+            span{
+                font-size: 0.8em;
+            }
+        }
+    }   
+}
+#notify {
+    font-size: 1.8em;
+}
+
+.bubbles {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--ion-color-danger);
+    position: absolute;
+    margin-top: -10px;
+    margin-left: -10px;
+}
+.notify{
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--ion-color-danger);
+    position: absolute;
+    border:1px solid rgba(255, 255, 255, 0.8);
+    bottom:3px;
+}
+
+//HorizontaL Scroller
+.scrolling-wrapper {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+
+    .card {
+        flex: 0 0 auto;
+    }
+
+    &::-webkit-scrollbar {
+        display: none;
+    }
+}
+
+ion-button{
+    --box-shadow: none !important;
+    --webkit-box-shadow: none !important;
+}
+
+.sc-ion-card-md-h, .sc-ion-card-ios-h {
+    box-shadow: none;
+    -webkit-box-shadow: none;
+    border: 1px solid var(--ion-color-silver-tint);
+    border-radius: 10px !important;
+}
+ion-card-header{
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+}
+ion-card-content{
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+}
+
+.swiper-pagination-bullet {
+    width: 30px;
+    height: 4px;
+    display: inline-block;
+    border-radius: 10px;
+    opacity: .2;
+}
+.swiper-pagination-bullet-active {
+    opacity: 1;
+    --bullet-background-active: #042954 !important;
+    background: var(--bullet-background-active);
+}
+
+.sc-ion-card-md-h {
+    margin-left: unset;
+    margin-right: unset;
+    -webkit-margin-start: 0px;
+    margin-inline-start: 0px;
+    -webkit-margin-end: 0px;
+    margin-inline-end: 0px;
+}
+
+.successtoast{
+    --background: var(--ion-color-success);
+    --border-radius: 30px !important;
+    --width: 85%;
+    --box-shadow: 0 5px 20px 0 rgba(57, 181, 74, 0.2);
+}
+.infotoast{
+    --background: var(--ion-color-secondary);
+    --border-radius: 30px !important;
+    --width: 85%;
+    --color: var(--ion-color-light);
+    --box-shadow: 0 5px 20px 0 rgba(57, 135, 250, 0.2);
+}
+.connecterror{
+    --background: var(--ion-color-dark);
+    --border-radius: 30px !important;
+    --width: 85%;
+    --box-shadow: 0 5px 20px 0 rgba(34, 34, 34, 0.2);
+}
+
+.card-image{
+    border-radius: 5px 5px 0 0;
+    filter: brightness(50%);
+}
+
+.no-record{
+    display: block;
+    margin-top: 20vh;
+    span{
+        margin: 0 auto;
+        width: 80%;
+        display: block;
+        background: var(--ion-color-primary);
+        text-align: center;
+        padding: 7px 20px;
+        border-radius: 5px;
+        color: white;
+    }
+}

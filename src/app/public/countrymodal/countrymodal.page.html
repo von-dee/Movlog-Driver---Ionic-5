@@ -1,0 +1,42 @@
+<!-- <ion-header>
+  <ion-toolbar>
+    <ion-title>countrymodal</ion-title>
+  </ion-toolbar>
+</ion-header> -->
+
+<ion-content>
+
+    <div class="login">
+
+        <div class="signup">
+          <p class="bigtxt_list">
+            <span class="quest_small" style="margin-bottom: 0;">Choose a country code </span>
+            <span class="quest_small close_btn" (click)="closeModal();"><ion-icon name="close"></ion-icon></span>
+          </p>
+        </div>
+
+        <div>
+          <ion-searchbar [(ngModel)]="searchTerm" (ionChange)="setFilteredItems()" name="searchTerm">
+          </ion-searchbar>
+        </div>
+
+        <div>
+          <ion-list>
+            <div *ngFor="let entry of countries">
+              <ion-item (click)="closeModal(entry);">
+                <ion-label>{{entry.COUN_NAME}}</ion-label>
+              </ion-item>
+            </div>
+          </ion-list>
+        </div>
+      </div>
+
+</ion-content>
+
+<!-- <ion-footer>
+  <ion-row>
+    <ion-col text-center>
+      <ion-button (click)="closeModal()">Close Modal</ion-button>
+    </ion-col>
+  </ion-row>
+</ion-footer> -->
